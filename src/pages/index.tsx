@@ -11,10 +11,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h2>
-        <Link href="/csr">CSR</Link>
+        <Link href="/csr/user">CSR</Link>
       </h2>
       <h2>
-        <Link href="/ssr">SSR</Link>
+        <Link href="/ssr/user">SSR</Link>
+      </h2>
+      <h2>
+        <Link href="/ssg/user">SSG</Link>
       </h2>
     </div>
   );
