@@ -11,13 +11,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h2>
-        <Link href="/csr/user">CSR</Link>
+        <Link href="/csr/user">ClientSideRendering</Link>
       </h2>
       <h2>
-        <Link href="/ssr/user">SSR</Link>
+        <Link href="/ssr/user">ServerSideRendering</Link>
       </h2>
       <h2>
-        <Link href="/ssg/user">SSG</Link>
+        <Link href="/ssg/user">StaticSiteGeneration</Link>
       </h2>
     </div>
   );
