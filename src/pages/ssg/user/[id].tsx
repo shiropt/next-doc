@@ -1,16 +1,24 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { path } from "../../../utils/path";
-import { Post } from "../../../utils/type";
+import { Album, Post } from "../../../utils/type";
 
-const SSG_User = (props: { data: Post[] }) => {
+const SSG_User = (props: { posts: Post[]; albums: Album[] }) => {
   return (
     <div>
       投稿一覧
       <ul>
-        {props.data.map((post) => (
+        {props.posts.map((post) => (
           <Link key={post.id} href={`post/${post.id}`}>
             <li>{post.title}</li>
+          </Link>
+        ))}
+      </ul>
+      アルバム一覧
+      <ul>
+        {props.albums.map((album) => (
+          <Link key={album.id} href={`album/${album.id}`}>
+            <li>{album.title}</li>
           </Link>
         ))}
       </ul>
@@ -31,11 +39,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
-  const res = await fetch(`${path.posts}?userId=${id}`);
-  const data = await res.json();
+  const responseByPosts = await fetch(`${path.posts}?userId=${id}`);
+  const responseByAlbums = await fetch(`${path.albums}?userId=${id}`);
+  const posts = await responseByPosts.json();
+  const albums = await responseByAlbums.json();
 
   return {
-    props: { data },
+    props: { posts, albums },
   };
 };
 
