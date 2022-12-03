@@ -3,6 +3,7 @@ import { useFetch } from "../../../hooks/useFetch";
 import { path } from "../../../utils/path";
 import { Album, Post, User } from "../../../utils/type";
 import { useRouter } from "next/router";
+import { Tooltip } from "../../../components/popperTooltip";
 
 const CSR_User = () => {
   const router = useRouter();
@@ -17,17 +18,21 @@ const CSR_User = () => {
       投稿一覧
       <ul>
         {posts.map((post) => (
-          <Link key={post.id} href={`post/${post.id}`}>
-            <li>{post.title}</li>
-          </Link>
+          <Tooltip key={post.id}>
+            <Link href={`post/${post.id}`}>
+              <li>{post.title}</li>
+            </Link>
+          </Tooltip>
         ))}
       </ul>
       アルバム一覧
       <ul>
         {albums.map((album) => (
-          <Link key={album.id} href={`album/${album.id}`}>
-            <li>{album.title}</li>
-          </Link>
+          <Tooltip key={album.id}>
+            <Link href={`album/${album.id}`}>
+              <li>{album.title}</li>
+            </Link>
+          </Tooltip>
         ))}
       </ul>
     </div>

@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
+import { Tooltip } from "../../../components/popperTooltip";
 import { path } from "../../../utils/path";
 import { User } from "../../../utils/type";
 
@@ -8,9 +9,11 @@ const SSG = (props: { data: User[] }) => {
     <div>
       <ul>
         {props.data.map((user) => (
-          <Link key={user.id} href={`user/${user.id}`}>
-            <li key={user.id}>{user.name}</li>
-          </Link>
+          <Tooltip key={user.id}>
+            <Link href={`user/${user.id}`} prefetch={false}>
+              <li key={user.id}>{user.name}</li>
+            </Link>
+          </Tooltip>
         ))}
       </ul>
     </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { path } from "../../../utils/path";
 import { Album, Post } from "../../../utils/type";
 import { GetServerSideProps } from "next";
+import { Tooltip } from "../../../components/popperTooltip";
 
 const SSR_User = (props: { posts: Post[]; albums: Album[] }) => {
   return (
@@ -9,17 +10,21 @@ const SSR_User = (props: { posts: Post[]; albums: Album[] }) => {
       投稿一覧
       <ul>
         {props.posts.map((post) => (
-          <Link key={post.id} href={`post/${post.id}`}>
-            <li>{post.title}</li>
-          </Link>
+          <Tooltip key={post.id}>
+            <Link href={`post/${post.id}`}>
+              <li>{post.title}</li>
+            </Link>
+          </Tooltip>
         ))}
       </ul>
       アルバム一覧
       <ul>
         {props.albums.map((album) => (
-          <Link key={album.id} href={`album/${album.id}`}>
-            <li>{album.title}</li>
-          </Link>
+          <Tooltip key={album.id}>
+            <Link href={`album/${album.id}`}>
+              <li>{album.title}</li>
+            </Link>
+          </Tooltip>
         ))}
       </ul>
     </div>

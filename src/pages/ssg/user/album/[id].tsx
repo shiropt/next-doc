@@ -23,7 +23,7 @@ const SSR_Photo = (props: { data: Photo[] }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(path.photos);
+  const res = await fetch(path.albums);
   const data = await res.json();
   const paths = data.map((photo: any) => {
     return {

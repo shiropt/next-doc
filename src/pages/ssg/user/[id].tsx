@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import { Tooltip } from "../../../components/popperTooltip";
 import { path } from "../../../utils/path";
 import { Album, Post } from "../../../utils/type";
 
@@ -9,17 +10,21 @@ const SSG_User = (props: { posts: Post[]; albums: Album[] }) => {
       投稿一覧
       <ul>
         {props.posts.map((post) => (
-          <Link key={post.id} href={`post/${post.id}`}>
-            <li>{post.title}</li>
-          </Link>
+          <Tooltip key={post.id}>
+            <Link href={`post/${post.id}`}>
+              <li>{post.title}</li>
+            </Link>
+          </Tooltip>
         ))}
       </ul>
       アルバム一覧
       <ul>
         {props.albums.map((album) => (
-          <Link key={album.id} href={`album/${album.id}`}>
-            <li>{album.title}</li>
-          </Link>
+          <Tooltip key={album.id}>
+            <Link key={album.id} href={`album/${album.id}`}>
+              <li>{album.title}</li>
+            </Link>
+          </Tooltip>
         ))}
       </ul>
     </div>
